@@ -40,6 +40,11 @@ public class FbGaeDataStoreServlet extends HttpServlet {
 	 * doGet method to create a new "tweet" entity and add it to the GAE Datastore
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// pre-flight request processing
+	    response.setHeader("Access-Control-Allow-Origin", "*");
+	    response.setHeader("Access-Control-Allow-Methods", "GET, POST");
+		
 		// timestamp_format contains the format for the tweet entity's timestamp
 		DateFormat timestamp_format = new SimpleDateFormat("MM/dd/yy, h:mm a");
 		timestamp_format.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));

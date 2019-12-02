@@ -27,6 +27,13 @@
 		gtag('config', 'UA-153625153-1');
 	</script>
 	
+	<script src="https://apis.google.com/js/api.js" type="text/javascript"></script>
+	<script type="text/javascript">
+  		gapi.load('auth2', function() {
+    	// Library loaded.
+  		});
+	</script>
+	
 	<script type="text/javascript" src="/js/tweet.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript">callme()</script>
@@ -72,7 +79,11 @@
 				<td>
 					<!-- <input type="submit" id=submit name=save class="button" value="Post Tweet to the App" /> -->
 					<form>
-					 	 <input type="button" id="post-button" value="Post Tweet to the App" onclick="shareTweet()">
+						<input type=hidden id=user_id name=user_id />
+						<input type=hidden id=first_name name=first_name /> 
+						<input type=hidden id=last_name	name=last_name /> 
+						<input type=hidden id=picture name=picture />
+					 	<input type="button" id="post-button" value="Post Tweet to the App" onclick="shareTweet()">
 					 </form>
 				</td>
 				

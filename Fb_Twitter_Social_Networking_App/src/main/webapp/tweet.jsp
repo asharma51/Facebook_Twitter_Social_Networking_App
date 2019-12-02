@@ -55,25 +55,29 @@
 	<div align="center">
 		<table>
 			<tr>
-				<!-- Call doGet() method in FbGaeDataStoreServlet to create a new tweet message-->
-				<form id="GaeDataStore" action="GaeDataStore" method="get" name="GaeDataStore">
-					<td>
-						<textarea id="text_content" name="text_content" 
-						 class="textarea" placeholder="Enter Tweet Message....."></textarea>
-					</td> 
-						<input type=hidden id=user_id name=user_id />
-					 	<input type=hidden id=first_name name=first_name /> 
-						<input type=hidden id=last_name	name=last_name /> 
-						<input type=hidden id=picture name=picture />
+				<td>
+					<textarea id="text_content" name="text_content" 
+					 class="textarea" placeholder="Enter Tweet Message....."></textarea>
+				</td> 
+					<!-- <input type=hidden id=user_id name=user_id />
+					<input type=hidden id=first_name name=first_name /> 
+					<input type=hidden id=last_name	name=last_name /> 
+					<input type=hidden id=picture name=picture /> -->
 					<script>
 						console.log(document.getElementById("first_name") + " "
 								+ document.getElementById("last_name") + " "
 								+ document.getElementById("picture"));
 					</script>
-					<td>
-						<input type="submit" id=submit name=save class="button" value="Post Tweet to the App" />
-					</td>
-				</form>
+				<td>
+					<!-- <input type="submit" id=submit name=save class="button" value="Post Tweet to the App" /> -->
+					<form>
+						<input type=hidden id=user_id name=user_id />
+						<input type=hidden id=first_name name=first_name /> 
+						<input type=hidden id=last_name	name=last_name /> 
+						<input type=hidden id=picture name=picture />
+						<input type="button" id="post-button" value="Post Tweet to the App" onclick="shareTweet()">
+					</form>
+				</td>
 			</tr>
 
 			<tr>				
