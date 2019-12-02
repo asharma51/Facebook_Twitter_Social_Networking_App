@@ -97,7 +97,7 @@ public class FbGaeDataStoreServlet extends HttpServlet {
 
 		// forward the client back to the tweet page to send and view their tweets
 		//request.getRequestDispatcher("https://apps.facebook.com/fb_networking_app/index").forward(request, response);
-		request.getRequestDispatcher("https://apps.facebook.com/fb_networking_app/index");
+		request.getRequestDispatcher("https://apps.facebook.com/fb_networking_app");
 	}
 
 	/**

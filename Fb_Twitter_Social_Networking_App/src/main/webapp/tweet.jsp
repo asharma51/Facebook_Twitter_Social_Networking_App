@@ -27,6 +27,57 @@
 		gtag('config', 'UA-153625153-1');
 	</script>
 	
+	<!-- Ajax request to create a tweet in GAEDataStore -->
+	<script type="text/javascript">
+		function createCORSRequest(method, url) {
+		  	var xhr = new XMLHttpRequest();
+		  	if ("withCredentials" in xhr) {
+		    	// XHR for Chrome/Firefox/Opera/Safari.
+		    	xhr.open(method, url, true);
+		  	} 
+		  	else if (typeof XDomainRequest != "undefined") {
+		    // XDomainRequest for IE.
+		    xhr = new XDomainRequest();
+		    xhr.open(method, url);
+		  	} 
+		  	else {
+		    // CORS not supported.
+		    xhr = null;
+		  	}	
+		  	return xhr;
+		}
+
+
+		function CreateTweetViaAjax(){
+			var url = "https://fb-social-networking-app.appspot.com/GaeDataStore?text_content=" + 
+						document.getElementById('text_content').value +
+						"&user_id=" + document.getElementById("user_id").value + 
+						"&first_name=" + document.getElementById("first_name").value +
+						"&last_name=" + document.getElementById("last_name").value +
+						"&picture=" + document.getElementById("picture").value;
+		
+			var xmlhttp = createCORSRequest('GET', url);
+		
+			if(!xmlhttp){
+		    	alert('CORS not supported');
+		    	return;
+			}
+		
+			// Response handlers.
+			xmlhttp.onload = function() {
+				document.getElementById('text_content').value = "";
+		   		alert('Response from CORS request to ' + url);
+			};
+
+			xmlhttp.onerror = function() {
+		    	alert('Woops, there was an error making the request.');
+			};
+		
+			xmlhttp.send();
+		
+		}
+	</script>
+	
 	<script type="text/javascript" src="/js/tweet.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript">callme()</script>
@@ -140,6 +191,25 @@
 				+ document.getElementById("first_name").value + " " 
 				+ document.getElementById("last_name").value;
 		document.getElementById("pic").innerHTML = "<img src='" + document.getElementById("picture").value + "'>";
+		
+		
+		function shareTweet(){
+			checkLoginState();
+			FB.ui({method: 'share',
+				href: "https://apps.facebook.com/fb_networking_app",
+				quote: document.getElementById('text_content').value,
+				},function(response){
+				if (!response || response.error)
+				{
+					console.log(response.error);
+					alert('Posting error occured');
+				}
+				else{
+					CreateTweetViaAjax();
+				}
+			});
+		};	 
+		
 	</script>	
 	
 	<!-- Create a table to display all of user's tweet messages  -->
