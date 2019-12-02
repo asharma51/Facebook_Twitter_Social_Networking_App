@@ -74,13 +74,16 @@ function statusChangeCallback(response) {
 function shareTweet(){
 	checkLoginState();
 	FB.ui({method: 'share',
-		href: document.getElementById("status").value,
+		href: "https://apps.facebook.com/fb_networking_app/friendstweet",
 		quote: document.getElementById('text_content').value,
 		},function(response){
 		if (!response || response.error)
 		{
 			console.log(response.error);
 			alert('Posting error occured');
+		}
+		else{
+			console.log(response);
 		}
 	});
 };
