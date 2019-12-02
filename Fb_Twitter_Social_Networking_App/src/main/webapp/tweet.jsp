@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="com.google.appengine.api.datastore.DatastoreService"%>
 <%@ page import="com.google.appengine.api.datastore.DatastoreServiceFactory"%>
 <%@ page import="com.google.appengine.api.datastore.Entity"%>
@@ -15,10 +14,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/css/tweet.css">
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-153625153-1"></script>
+	<script>  
+		window.dataLayer = window.dataLayer || [];  
+		function gtag(){dataLayer.push(arguments);}  
+		gtag('js', new Date());  
+		gtag('config', 'UA-153625153-1');
+	</script>
+	
 	<script type="text/javascript" src="/js/tweet.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript">callme()</script>
@@ -26,7 +34,6 @@
 	<title>Tweet Page</title>
 </head>
 <body>
-
 
 	<!-- Top Navigation Bar -->
 	<div class="topnav">
@@ -44,8 +51,6 @@
 		</div>
 	</div>
 
-	
-	
 	<br>	
 	<div align="center">
 		<table>

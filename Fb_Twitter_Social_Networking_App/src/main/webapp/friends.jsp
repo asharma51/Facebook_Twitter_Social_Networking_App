@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="com.google.appengine.api.datastore.DatastoreService" %>
 <%@ page import="com.google.appengine.api.datastore.DatastoreServiceFactory" %>
 <%@ page import="com.google.appengine.api.datastore.Entity" %>
@@ -16,6 +15,16 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<link rel="stylesheet" href="/css/tweet.css">
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-153625153-1"></script>
+	<script>  
+		window.dataLayer = window.dataLayer || [];  
+		function gtag(){dataLayer.push(arguments);}  
+		gtag('js', new Date());  
+		gtag('config', 'UA-153625153-1');
+	</script>
+	
 	<script type="text/javascript" src="/js/tweet.js"></script>
 	<script type="text/javascript">callme();</script>
 	<title>Friends' Tweets Page</title>
