@@ -135,34 +135,6 @@ function CreateTweetViaAjax(){
 	
 	xmlhttp.send();
 	
-	
-	if(window.XMLHttpRequest){
-		xmlhttp = new XMLHttpRequest();
-	}
-	else if(window.ActiveXObject){
-		xmlhttp = new ActiveXObject("Microsft.XMLHTTP");
-	}
-	
-	try{
-		xmlhttp.open("GET",url,true);
-		xmlhttp.onreadystatechange = function(){
-			if(xmlhttp.readyState == 4){
-				if(xmlhttp.status == 200){
-					document.getElementById('text_content').value = ""; 
-				}
-				else{
-					alert('Something is wrong !!');
-				}
-			}
-		};
-		
-	}
-	catch(exception){
-		alert("Unable to connect to server");
-	}
-	
-	xmlhttp.send(null);
-	
 }
 
 
