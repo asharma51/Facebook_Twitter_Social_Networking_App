@@ -19,12 +19,14 @@
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/css/tweet.css">
+	<script type="text/javascript" src="/js/tweet.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript">callme()</script>
 	
 	<title>Tweet Page</title>
 </head>
 <body>
-<script type="text/javascript" src="/js/tweet.js"></script>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+
 
 	<!-- Top Navigation Bar -->
 	<div class="topnav">
@@ -42,9 +44,7 @@
 		</div>
 	</div>
 
-	<script type="text/javascript">
-		callme()
-	</script>
+	
 	
 	<br>	
 	<div align="center">
