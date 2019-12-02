@@ -27,7 +27,7 @@
 		gtag('config', 'UA-153625153-1');
 	</script>
 	
-	<!-- Ajax request to create a tweet in GAEDataStore -->
+	<!-- Ajax request to create a tweet in GAEDataStore
 	<script type="text/javascript">
 		function createCORSRequest(method, url) {
 		  	var xhr = new XMLHttpRequest();
@@ -76,7 +76,7 @@
 			xmlhttp.send();
 		
 		}
-	</script>
+	</script> -->
 	
 	<script type="text/javascript" src="/js/tweet.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
@@ -193,7 +193,7 @@
 		document.getElementById("pic").innerHTML = "<img src='" + document.getElementById("picture").value + "'>";
 		
 		
-		function shareTweet(){
+		/* function shareTweet(){
 			checkLoginState();
 			FB.ui({method: 'share',
 				href: "https://apps.facebook.com/fb_networking_app",
@@ -208,7 +208,7 @@
 					CreateTweetViaAjax();
 				}
 			});
-		};	 
+		};	  */
 		
 	</script>	
 	

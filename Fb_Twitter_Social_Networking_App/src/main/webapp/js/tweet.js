@@ -124,8 +124,10 @@ function CreateTweetViaAjax(){
 	
 	// Response handlers.
 	xmlhttp.onload = function() {
+		var text = xhr.responseText;
+	    var title = getTitle(text);
 		document.getElementById('text_content').value = "";
-	    alert('Response from CORS request to ' + url);
+		alert('Tweet posted successfully!.');
 	};
 
 	xmlhttp.onerror = function() {
