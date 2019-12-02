@@ -42,8 +42,10 @@ public class FbGaeDataStoreServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// pre-flight request processing
-	    response.setHeader("Access-Control-Allow-Origin", "*");
-	    response.setHeader("Access-Control-Allow-Methods", "GET, POST");
+		response.addHeader("Access-Control-Allow-Origin", request.getParameter("Origin"));
+	    response.addHeader("Access-Control-Allow-Methods", "GET, POST");
+	    response.addHeader("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Accept, Origin");
+	   
 		
 		// timestamp_format contains the format for the tweet entity's timestamp
 		DateFormat timestamp_format = new SimpleDateFormat("MM/dd/yy, h:mm a");
@@ -94,7 +96,8 @@ public class FbGaeDataStoreServlet extends HttpServlet {
 		Key tweet_key = GAEDatastore.put(message);
 
 		// forward the client back to the tweet page to send and view their tweets
-		request.getRequestDispatcher("tweet.jsp").forward(request, response);
+		//request.getRequestDispatcher("https://apps.facebook.com/fb_networking_app/index").forward(request, response);
+		request.getRequestDispatcher("https://apps.facebook.com/fb_networking_app/index");
 	}
 
 	/**

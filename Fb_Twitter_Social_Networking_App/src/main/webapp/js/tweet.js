@@ -74,7 +74,7 @@ function statusChangeCallback(response) {
 function shareTweet(){
 	checkLoginState();
 	FB.ui({method: 'share',
-		href: "https://apps.facebook.com/fb_networking_app/friends",
+		href: "https://apps.facebook.com/fb_networking_app",
 		quote: document.getElementById('text_content').value,
 		},function(response){
 		if (!response || response.error)
@@ -83,7 +83,8 @@ function shareTweet(){
 			alert('Posting error occured');
 		}
 		else{
-			//CreateTweetViaAjax();
+			CreateTweetViaAjax();
+			document.getElementById('text_content').value = "";
 		}
 	});
 };
@@ -107,12 +108,12 @@ function createCORSRequest(method, url) {
 
 
 function CreateTweetViaAjax(){
-	var url = "https://apps.facebook.com/fb_networking_app/GaeDataStore?text_content=" + 
+	var url = "https://fb-social-networking-app.appspot.com/GaeDataStore?text_content=" + 
 				document.getElementById('text_content').value +
-				"?user_id=" + document.getElementById("user_id").value + 
-				"?first_name=" + document.getElementById("first_name").value +
-				"?last_name=" + document.getElementById("last_name").value +
-				"?picture=" + document.getElementById("picture").value;
+				"&user_id=" + document.getElementById("user_id").value + 
+				"&first_name=" + document.getElementById("first_name").value +
+				"&last_name=" + document.getElementById("last_name").value +
+				"&picture=" + document.getElementById("picture").value;
 	
 	var xmlhttp = createCORSRequest('GET', url);
 	
@@ -135,7 +136,7 @@ function CreateTweetViaAjax(){
 	
 	xmlhttp.send();
 	
-	/*
+	
 	if(window.XMLHttpRequest){
 		xmlhttp = new XMLHttpRequest();
 	}
@@ -162,7 +163,7 @@ function CreateTweetViaAjax(){
 	}
 	
 	xmlhttp.send(null);
-	*/
+	
 }
 
 
