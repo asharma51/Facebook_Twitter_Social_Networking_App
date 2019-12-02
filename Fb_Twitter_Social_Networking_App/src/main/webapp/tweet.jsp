@@ -56,7 +56,7 @@
 		<table>
 			<tr>
 				<!-- Call doGet() method in FbGaeDataStoreServlet to create a new tweet message-->
-				<form id="storegae" action="GaeStore" method="get" name="storegae">
+				<form id="GaeDataStore" action="GaeDataStore" method="get" name="GaeDataStore">
 					<td>
 						<textarea id="text_content" name="text_content" 
 						 class="textarea" placeholder="Enter Tweet Message....."></textarea>
