@@ -84,7 +84,6 @@ function shareTweet(){
 		}
 		else{
 			CreateTweetViaAjax();
-			document.getElementById('text_content').value = "";
 		}
 	});
 };
@@ -124,8 +123,8 @@ function CreateTweetViaAjax(){
 	
 	// Response handlers.
 	xmlhttp.onload = function() {
-		var text = xhr.responseText;
-	    var title = getTitle(text);
+		//var text = xmlhttp.responseText;
+	    //var title = getTitle(text);
 		document.getElementById('text_content').value = "";
 		alert('Tweet posted successfully!.');
 	};
