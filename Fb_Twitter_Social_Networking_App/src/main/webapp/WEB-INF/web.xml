@@ -20,7 +20,19 @@
 	<servlet-mapping>
 		<servlet-name>friendstweet</servlet-name>
 		<url-pattern>/friends</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LinkedTweet</servlet-name>
+		<jsp-file>LinkedTweet.jsp</jsp-file>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>LinkedTweet</servlet-name>
+		<url-pattern>/LinkedTweet</url-pattern>
 	</servlet-mapping> 
+	
+	
 
 
 	<servlet>

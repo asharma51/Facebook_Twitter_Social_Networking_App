@@ -92,8 +92,7 @@ function shareTweet(){
 function shareDirectTweet(){
 	checkLoginState();
 	FB.ui({method: 'share',
-		href: "https://apps.facebook.com/fb_networking_app/friendstweet",
-		quote: "https://apps.facebook.com/fb_networking_app/friendstweet",
+		href: "https://apps.facebook.com/fb_networking_app/tweet",
 		},function(response){
 		if (!response || response.error)
 		{
@@ -146,8 +145,10 @@ function getCookie(cname) {
 
 function sendDirectMsg(){
 	checkLoginState();
+	var tweet_id = "5669869676658688";
+	var url = "https://apps.facebook.com/fb_networking_app/LinkedTweet?tweet_id=" + tweet_id;
 	FB.ui({method:  'send',
-		link:'https://apps.facebook.com/fb_networking_app/friendstweet' });
+		link:url });
 };
 
 
