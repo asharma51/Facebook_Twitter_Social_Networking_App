@@ -88,8 +88,8 @@ public class FbGaeDataStoreServlet extends HttpServlet {
 		 */
 		Key tweet_key = GAEDatastore.put(message);
 
-		// forward the client back to the index page to send and view their tweets
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		// forward the client back to the tweet page to send and view their tweets
+		request.getRequestDispatcher("tweet.jsp").forward(request, response);
 	}
 
 	/**
