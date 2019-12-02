@@ -74,7 +74,7 @@ function statusChangeCallback(response) {
 function shareTweet(){
 	checkLoginState();
 	FB.ui({method: 'share',
-		href: "https://apps.facebook.com/fb_networking_app/friendstweet",
+		href: "https://apps.facebook.com/fb_networking_app/friends",
 		quote: document.getElementById('text_content').value,
 		},function(response){
 		if (!response || response.error)
