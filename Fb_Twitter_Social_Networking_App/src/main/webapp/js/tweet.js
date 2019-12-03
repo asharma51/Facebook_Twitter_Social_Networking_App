@@ -53,7 +53,7 @@ function statusChangeCallback(response) {
     if (response.status === 'connected') {
       user_id = response.authResponse.userID;
       console.log(user_id);
-      extractInfo();
+      getInfo();
       console.log("Already logged in");
     } else {
       console.log("Please login");
