@@ -63,13 +63,14 @@
 			</tr>
 
 			<tr>	
-				<td>					
+				<td>
+					<br>					
 					<form>
 						<input type=hidden id=user_id name=user_id />
 						<input type=hidden id=first_name name=first_name /> 
 						<input type=hidden id=last_name	name=last_name /> 
 						<input type=hidden id=picture name=picture />
-						<input type="button" id="post-button" value="Post Tweet to the Timeline"
+						<input type="button" id="post-button" class="button" value="Post Tweet to the Timeline"
 						 onclick="shareTweet()">
 					</form>
 				</td>
