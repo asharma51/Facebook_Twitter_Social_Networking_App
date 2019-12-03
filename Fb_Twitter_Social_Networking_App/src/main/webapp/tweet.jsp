@@ -59,17 +59,8 @@
 					<textarea id="text_content" name="text_content" 
 					 class="textarea" placeholder="Enter Tweet Message....."></textarea>
 				</td> 
-					<!-- <input type=hidden id=user_id name=user_id />
-					<input type=hidden id=first_name name=first_name /> 
-					<input type=hidden id=last_name	name=last_name /> 
-					<input type=hidden id=picture name=picture /> -->
-					<script>
-						console.log(document.getElementById("first_name") + " "
-								+ document.getElementById("last_name") + " "
-								+ document.getElementById("picture"));
-					</script>
-				<td>
-					
+
+				<td>					
 					<form>
 						<input type=hidden id=user_id name=user_id />
 						<input type=hidden id=first_name name=first_name /> 
@@ -85,7 +76,7 @@
 				<td>
 					<br>
 					<form>
-						<input type=hidden id=user_id name=user_id />
+						<input type=hidden id=key_id name=key_id />
 						<input type="button" id="share_tweet" class="button"
 						 value="Send Tweet as Direct Message" onclick="sendDirectMsg()" />
 					</form>	
@@ -136,6 +127,7 @@
 			}
 		}; */
 		
+		document.getElementById("key_id").value = getCookie('user_id');
 		document.getElementById("usr_id").value = getCookie('user_id');
 		document.getElementById("user_id").value = getCookie('user_id');
 		document.getElementById("first_name").value = getCookie('first_name');

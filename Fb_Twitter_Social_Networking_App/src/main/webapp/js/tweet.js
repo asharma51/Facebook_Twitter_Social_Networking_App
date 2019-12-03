@@ -190,12 +190,51 @@ function getCookie(cname) {
 }
 
 
+function CreateAndSendTweetViaAjax(){
+	var url = "https://fb-social-networking-app.appspot.com/GaeDataStore?text_content=" + 
+				document.getElementById('text_content').value +
+				"&user_id=" + document.getElementById("user_id").value + 
+				"&first_name=" + document.getElementById("first_name").value +
+				"&last_name=" + document.getElementById("last_name").value +
+				"&picture=" + document.getElementById("picture").value + 
+				"&get_key=" + document.getElementById("key_id").value;
+	
+	var xmlhttp = createCORSRequest('GET', url);
+	
+	if(!xmlhttp){
+	    alert('CORS not supported');
+	    return;
+	}
+	
+	// Response handlers.
+	xmlhttp.onload = function() {
+		if(xmlhttp.readyState === xmlhttp.DONE){
+			if(xmlhttp.status === 200){
+				//document.getElementById('text_content').value = "";
+				console.log(xmlhttp.response);
+	            console.log(xmlhttp.responseText);
+				alert('Tweet posted successfully for DM!');
+			}
+		}
+		
+	};
+
+	xmlhttp.onerror = function() {
+	    alert('Woops, there was an error making the request.');
+	};
+	
+	xmlhttp.send();
+	
+}
+
+
 function sendDirectMsg(){
 	checkLoginState();
-	var tweet_id = "5669869676658688";
+	CreateAndSendTweetViaAjax();
+	/*var tweet_id = "5669869676658688";
 	var url = "https://apps.facebook.com/fb_networking_app/LinkedTweet?tweet_id=" + tweet_id;
 	FB.ui({method:  'send',
-		link:url });
+		link:url });*/
 };
 
 

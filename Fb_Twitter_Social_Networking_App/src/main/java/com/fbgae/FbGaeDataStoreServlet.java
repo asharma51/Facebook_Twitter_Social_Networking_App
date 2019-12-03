@@ -94,10 +94,21 @@ public class FbGaeDataStoreServlet extends HttpServlet {
 		 * tweet_key variable
 		 */
 		Key tweet_key = GAEDatastore.put(message);
+		
+		if(request.getParameter("key_id") != null) {
+			Long KeyID = tweet_key.getId();
+			String StrKeyID = String.valueOf(KeyID);
+			Cookie CookieKeyID = new Cookie("key_id", StrKeyID);
+			response.addCookie(CookieKeyID);
+			request.getRequestDispatcher("https://apps.facebook.com/fb_networking_app").forward(request, response);
+		}
+		else {
+			request.getRequestDispatcher("https://apps.facebook.com/fb_networking_app");
+		}
 
 		// forward the client back to the tweet page to send and view their tweets
 		//request.getRequestDispatcher("https://apps.facebook.com/fb_networking_app/index").forward(request, response);
-		request.getRequestDispatcher("https://apps.facebook.com/fb_networking_app");
+		
 	}
 
 	/**
