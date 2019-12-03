@@ -79,7 +79,7 @@
 					<form>
 						<input type=hidden id=key_id name=key_id />
 						<input type="button" id="share_tweet" class="button"
-						 value="Send linked tweet as Direct Message" onclick="sendDirectMsg()" />
+						 value="Send tweet as Direct Message" onclick="sendDirectMsg()" />
 					</form>	
 				</td>
 				
