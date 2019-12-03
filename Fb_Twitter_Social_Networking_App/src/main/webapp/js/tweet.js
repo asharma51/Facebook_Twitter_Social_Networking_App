@@ -215,7 +215,7 @@ function CreateAndSendTweetViaAjax(){
 	            console.log(xmlhttp.responseText);
 	            console.log(xmlhttp.responseURL);
 	            document.getElementById('text_content').value = xmlhttp.responseText;
-				alert('Tweet posted successfully for DM!!!!!!!!!!!!!!!!!!');
+				alert('Tweet posted successfully for DM??????????');
 			}
 		}
 		
