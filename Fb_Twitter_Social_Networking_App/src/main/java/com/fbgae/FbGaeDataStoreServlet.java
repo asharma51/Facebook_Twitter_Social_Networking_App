@@ -16,7 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
+import com.google.appengine.api.datastore.Query.SortDirection;
 
 /**
  * FbGaeDataStoreServlet to handle creating new tweets to add to the GAE
@@ -40,14 +45,14 @@ public class FbGaeDataStoreServlet extends HttpServlet {
 	 * doGet method to create a new "tweet" entity and add it to the GAE Datastore
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		// pre-flight request processing
 		response.addHeader("Access-Control-Allow-Origin", "*");
-	    response.addHeader("Access-Control-Allow-Methods", "GET");
-	    response.addHeader("Access-Control-Request-Method", "GET");
-	    //response.addHeader("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Accept, Origin");
-	   
-		
+		response.addHeader("Access-Control-Allow-Methods", "GET");
+		response.addHeader("Access-Control-Request-Method", "GET");
+		// response.addHeader("Access-Control-Allow-Headers", "X-Requested-With,
+		// Content-Type, Accept, Origin");
+
 		// timestamp_format contains the format for the tweet entity's timestamp
 		DateFormat timestamp_format = new SimpleDateFormat("MM/dd/yy, h:mm a");
 		timestamp_format.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
@@ -64,6 +69,7 @@ public class FbGaeDataStoreServlet extends HttpServlet {
 
 		// Create a new tweet entity message to add to the Datastore
 		Entity message = new Entity("tweet");
+		String timestamp = timestamp_format.format(current_date);
 
 		// Set the properties of the tweet entity message
 		message.setProperty("status", request.getParameter("text_content"));
@@ -72,7 +78,7 @@ public class FbGaeDataStoreServlet extends HttpServlet {
 		message.setProperty("last_name", request.getParameter("last_name"));
 		message.setProperty("picture", request.getParameter("picture"));
 		message.setProperty("visited_count", 0);
-		message.setProperty("timestamp", timestamp_format.format(current_date));
+		message.setProperty("timestamp", timestamp);
 
 		/*
 		 * Create cookies for the application user's user_id, first name, last name, and
@@ -94,22 +100,20 @@ public class FbGaeDataStoreServlet extends HttpServlet {
 		 * GCP project and maintain the returned key for the new tweet entity in the
 		 * tweet_key variable
 		 */
-		Key tweet_key = GAEDatastore.put(message);
-		
-		if(request.getParameter("key_id") != null) {
-			Long KeyID = tweet_key.getId();
-			String StrKeyID = String.valueOf(KeyID);
-			Cookie CookieKeyID = new Cookie("key_id", StrKeyID);
-			response.addCookie(CookieKeyID);
-			request.getRequestDispatcher("https://apps.facebook.com/fb_networking_app").forward(request, response);
-		}
-		else {
-			request.getRequestDispatcher("https://apps.facebook.com/fb_networking_app");
+		GAEDatastore.put(message);
+
+		// get tweet id from datastore
+		Filter userIdFilter = new FilterPredicate("user_id", FilterOperator.EQUAL, request.getParameter("user_id"));
+		Filter timestampFilter = new FilterPredicate("timestamp", FilterOperator.EQUAL, timestamp);
+		Query q = new Query("tweet").addSort("timestamp", SortDirection.DESCENDING).setFilter(userIdFilter)
+				.setFilter(timestampFilter);
+		PreparedQuery prepQ = GAEDatastore.prepare(q);
+		for (Entity output : prepQ.asIterable()) {
+			Long tweetId = (Long) output.getKey().getId();
+			Cookie tweet_id = new Cookie("tweet_id", String.valueOf(tweetId));
+			response.addCookie(tweet_id);
 		}
 
-		// forward the client back to the tweet page to send and view their tweets
-		//request.getRequestDispatcher("https://apps.facebook.com/fb_networking_app/index").forward(request, response);
-		
 	}
 
 	/**

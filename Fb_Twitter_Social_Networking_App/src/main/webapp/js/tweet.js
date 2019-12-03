@@ -71,6 +71,7 @@ function statusChangeCallback(response) {
 }(document, 'script', 'facebook-jssdk'));
 
 
+//method to post tweet content to timeline
 function shareTweet(){
 	checkLoginState();
 	FB.ui({method: 'share',
@@ -88,7 +89,7 @@ function shareTweet(){
 	});
 };
 
-
+//util method to send http request
 function createCORSRequest(method, url) {
 	  var xhr = new XMLHttpRequest();
 	  if ("withCredentials" in xhr) {
@@ -105,7 +106,7 @@ function createCORSRequest(method, url) {
 	  return xhr;
 }
 
-
+//method to send tweet content to back end when tweet is posted to timeline
 function CreateTweetViaAjax(){
 	var url = "https://fb-social-networking-app.appspot.com/GaeDataStore?text_content=" + 
 				document.getElementById('text_content').value +
@@ -135,7 +136,7 @@ function CreateTweetViaAjax(){
 	
 }
 
-
+/*
 function shareDirectTweet(){
 	checkLoginState();
 	FB.ui({method: 'share',
@@ -148,9 +149,10 @@ function shareDirectTweet(){
 		}
 	});
 }
+*/
 
-
-function extractInfo(){
+//function to get user info and save in cookies 
+function getInfo(){
 	FB.api('/me', 
 			'GET',
 			{"fields":"id,first_name,last_name, picture.width(150).height(150)"},
@@ -173,6 +175,7 @@ function extractInfo(){
 				console.log(document.cookie);
 			});
 	 
+	//updating document elements that are passed on different requests
 	document.getElementById("user_id").value = getCookie('user_id');
 	document.getElementById("first_name").value = getCookie('first_name');
 	document.getElementById("last_name").value = getCookie('last_name');
@@ -183,6 +186,7 @@ function extractInfo(){
 };
 
 
+//util method to extract cookie from document
 function getCookie(cname) {
 	var re = new RegExp(cname + "=([^;]+)");
 	var value = re.exec(document.cookie);
@@ -190,15 +194,16 @@ function getCookie(cname) {
 }
 
 
+//function to send tweet content to back end when tweet is sent as a direct message
 function CreateAndSendTweetViaAjax(){
 	var url = "https://fb-social-networking-app.appspot.com/GaeDataStore?text_content=" + 
 				document.getElementById('text_content').value +
 				"&user_id=" + document.getElementById("user_id").value + 
 				"&first_name=" + document.getElementById("first_name").value +
 				"&last_name=" + document.getElementById("last_name").value +
-				"&picture=" + document.getElementById("picture").value + 
-				"&get_key=" + document.getElementById("key_id").value;
-	
+				"&picture=" + document.getElementById("picture").value;
+
+	//http request
 	var xmlhttp = createCORSRequest('GET', url);
 	
 	if(!xmlhttp){
@@ -206,21 +211,29 @@ function CreateAndSendTweetViaAjax(){
 	    return;
 	}
 	
-	// Response handlers.
+	// Response handlers
 	xmlhttp.onload = function() {
 		if(xmlhttp.readyState === xmlhttp.DONE){
+			//on successful response
 			if(xmlhttp.status === 200){
-				//document.getElementById('text_content').value = "";
 				console.log(xmlhttp.response);
 	            console.log(xmlhttp.responseText);
 	            console.log(xmlhttp.responseURL);
 	            document.getElementById('text_content').value = xmlhttp.responseText;
-				alert('Tweet posted successfully for DM??????????');
+				//fetch tweet id from cookie set up by server
+				var tweet_id = getCookie('tweet_id');
+				console.log('tweet_id = ');
+				console.log(tweet_id);
+				// fb ui url for sending direct message
+				var url = "https://apps.facebook.com/fb_networking_app/LinkedTweet?tweet_id=" + tweet_id;
+				FB.ui({method:  'send',
+					link:url });
 			}
 		}
 		
 	};
 
+	//error handler
 	xmlhttp.onerror = function() {
 	    alert('Woops, there was an error making the request.');
 	};
@@ -229,14 +242,10 @@ function CreateAndSendTweetViaAjax(){
 	
 }
 
-
+//js method that gets invoked on click of send direct message button
 function sendDirectMsg(){
 	checkLoginState();
 	CreateAndSendTweetViaAjax();
-	/*var tweet_id = "5669869676658688";
-	var url = "https://apps.facebook.com/fb_networking_app/LinkedTweet?tweet_id=" + tweet_id;
-	FB.ui({method:  'send',
-		link:url });*/
 };
 
 

@@ -53,7 +53,7 @@
 	<br>
 	<br>
 <%
-		//fetch tweet from DataStore		
+		//fetch linked tweet from DataStore and display the tweet content 	
 		DatastoreService GAEDatastore = DatastoreServiceFactory.getDatastoreService();
 		if (request.getParameter("tweet_id") != null) {
 			Entity tweet = GAEDatastore.get(KeyFactory.createKey("tweet", 
@@ -62,8 +62,6 @@
 			String tweetMessage = (String) tweet.getProperty("status");	
 			String timestamp = (String) tweet.getProperty("timestamp");
 			Long visitedCount = (Long) tweet.getProperty("visited_count");
-			String userID = (String) tweet.getProperty("user_id"); 
-			Long keyID = (Long) tweet.getKey().getId();
 			%>
 			<table id="my_tweets">
 			<tr>
@@ -71,7 +69,6 @@
 				<th>Tweet Message</th>
 				<th>Posted at</th>
 				<th># of Visits</th>
-				
 			</tr>
 			<tr>
 				<td><%= tweetMessage %></td>			  	

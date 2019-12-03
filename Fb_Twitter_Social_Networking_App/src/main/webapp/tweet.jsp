@@ -60,25 +60,26 @@
 					 class="textarea" placeholder="Enter Tweet Message....."></textarea>
 				</td> 
 
+			</tr>
+
+			<tr>	
 				<td>					
 					<form>
 						<input type=hidden id=user_id name=user_id />
 						<input type=hidden id=first_name name=first_name /> 
 						<input type=hidden id=last_name	name=last_name /> 
 						<input type=hidden id=picture name=picture />
-						<input type="button" id="post-button" value="Post Tweet to the App"
+						<input type="button" id="post-button" value="Post Tweet to the Timeline"
 						 onclick="shareTweet()">
 					</form>
 				</td>
-			</tr>
-
-			<tr>				
+							
 				<td>
 					<br>
 					<form>
 						<input type=hidden id=key_id name=key_id />
 						<input type="button" id="share_tweet" class="button"
-						 value="Send Tweet as Direct Message" onclick="sendDirectMsg()" />
+						 value="Send linked tweet as Direct Message" onclick="sendDirectMsg()" />
 					</form>	
 				</td>
 				
@@ -93,18 +94,6 @@
 			
 		</table>
 	</div>
-
-<!-- 	<div align="center">
-		<div id="mypopup" class="popup">
-			<div class="popup-content">
-				<span class="close">&times;</span> 
-					<input type="button" class="button" value="Post Tweet to FB TimeLine" 
-					 name="share_tweet" onclick=shareDirectTweet() /> 
-					<input type="button" class="button" value="Send Direct Message Tweet" 
-					 name="send_direct_msg" onclick=sendDirectMsg() />
-			</div>
-		</div>
-	</div> -->
 	
 	<br><br>
 	<h1 id="TweetHeader"></h1>
@@ -112,20 +101,7 @@
 	<br><br>
 
 	<script>
-/* 		var modal = document.getElementById('mypopup');
-		var btn = document.getElementById("share_tweet");
-		var span = document.getElementsByClassName("close")[0];
-		btn.onclick = function() {
-			modal.style.display = "block";
-		};
-		span.onclick = function() {
-			modal.style.display = "none";
-		};
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}; */
+
 		
 		document.getElementById("key_id").value = getCookie('user_id');
 		document.getElementById("usr_id").value = getCookie('user_id');
@@ -166,7 +142,7 @@
 		}
 		
 		// Create a new query for entities whose kind is "tweet" and sort the query results
-		Query TweetQuery = new Query("tweet").addSort("visited_count", SortDirection.DESCENDING);
+		Query TweetQuery = new Query("tweet").addSort("timestamp", SortDirection.DESCENDING);
 		PreparedQuery prepQ = GAEDatastore.prepare(TweetQuery);
 		int counter = 0;
 
