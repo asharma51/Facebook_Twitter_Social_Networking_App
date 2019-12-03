@@ -66,7 +66,7 @@ function statusChangeCallback(response) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=900799546729806";
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=900799546729806";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
@@ -123,8 +123,6 @@ function CreateTweetViaAjax(){
 	
 	// Response handlers.
 	xmlhttp.onload = function() {
-		//var text = xmlhttp.responseText;
-	    //var title = getTitle(text);
 		document.getElementById('text_content').value = "";
 		alert('Tweet posted successfully!.');
 	};

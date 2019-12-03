@@ -69,13 +69,14 @@
 								+ document.getElementById("picture"));
 					</script>
 				<td>
-					<!-- <input type="submit" id=submit name=save class="button" value="Post Tweet to the App" /> -->
+					
 					<form>
 						<input type=hidden id=user_id name=user_id />
 						<input type=hidden id=first_name name=first_name /> 
 						<input type=hidden id=last_name	name=last_name /> 
 						<input type=hidden id=picture name=picture />
-						<input type="button" id="post-button" value="Post Tweet to the App" onclick="shareTweet()">
+						<input type="button" id="post-button" value="Post Tweet to the App"
+						 onclick="shareTweet()">
 					</form>
 				</td>
 			</tr>
@@ -83,12 +84,16 @@
 			<tr>				
 				<td>
 					<br>
-					<input type="button" id="share_tweet" class="button" value="Other Tweet Sharing Options" />
+					<form>
+						<input type=hidden id=user_id name=user_id />
+						<input type="button" id="share_tweet" class="button"
+						 value="Send Tweet as Direct Message" onclick="sendDirectMsg()" />
+					</form>	
 				</td>
 				
 				<td>
 					<br>
-					<form action="tweet.jsp" method="GET">
+					<form action="tweet.jsp" method="GET"> 
 						<input type=hidden id=usr_id name=usr_id />
 						<input type="submit" class="button" value="View All Tweets" name="view_tweets" />
 					</form>
@@ -98,7 +103,7 @@
 		</table>
 	</div>
 
-	<div align="center">
+<!-- 	<div align="center">
 		<div id="mypopup" class="popup">
 			<div class="popup-content">
 				<span class="close">&times;</span> 
@@ -108,7 +113,7 @@
 					 name="send_direct_msg" onclick=sendDirectMsg() />
 			</div>
 		</div>
-	</div>
+	</div> -->
 	
 	<br><br>
 	<h1 id="TweetHeader"></h1>
@@ -116,7 +121,7 @@
 	<br><br>
 
 	<script>
-		var modal = document.getElementById('mypopup');
+/* 		var modal = document.getElementById('mypopup');
 		var btn = document.getElementById("share_tweet");
 		var span = document.getElementsByClassName("close")[0];
 		btn.onclick = function() {
@@ -129,7 +134,7 @@
 			if (event.target == modal) {
 				modal.style.display = "none";
 			}
-		};
+		}; */
 		
 		document.getElementById("usr_id").value = getCookie('user_id');
 		document.getElementById("user_id").value = getCookie('user_id');
