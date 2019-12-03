@@ -43,7 +43,8 @@ public class FbGaeDataStoreServlet extends HttpServlet {
 		
 		// pre-flight request processing
 		response.addHeader("Access-Control-Allow-Origin", request.getParameter("Origin"));
-	    //response.addHeader("Access-Control-Allow-Methods", "GET, POST");
+	    response.addHeader("Access-Control-Allow-Methods", "GET");
+	    response.addHeader("Access-Control-Request-Method", "GET");
 	    //response.addHeader("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Accept, Origin");
 	   
 		

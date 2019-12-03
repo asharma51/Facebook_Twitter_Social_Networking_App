@@ -213,7 +213,9 @@ function CreateAndSendTweetViaAjax(){
 				//document.getElementById('text_content').value = "";
 				console.log(xmlhttp.response);
 	            console.log(xmlhttp.responseText);
-				alert('Tweet posted successfully for DM!');
+	            console.log(xmlhttp.responseURL);
+	            document.getElementById('text_content').value = xmlhttp.responseText;
+				alert('Tweet posted successfully for DM!!!!!!!!!!!!!!!!!!');
 			}
 		}
 		
